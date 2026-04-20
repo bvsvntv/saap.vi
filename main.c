@@ -25,7 +25,6 @@ Saap *tail;
 
 Food food;
 
-// initialize saap
 void init_saap() {
     Saap *saap = malloc(sizeof(Saap));
 
@@ -51,7 +50,6 @@ void add_segment() {
     tail = segment;
 }
 
-// render saap
 void render_saap(SDL_Renderer *renderer, int x, int y) {
     SDL_SetRenderDrawColor(renderer, 0x45, 0xFE, 0x02, 255);
 
@@ -71,7 +69,6 @@ void render_saap(SDL_Renderer *renderer, int x, int y) {
     }
 }
 
-// move saap
 void move_saap() {
     // Move the head
     int prev_x = head->x;
@@ -105,7 +102,6 @@ void move_saap() {
     }
 }
 
-// generate food
 void generate_food() {
     bool inside_saap;
 
@@ -116,7 +112,7 @@ void generate_food() {
 
         Saap *current = head;
 
-        // make sure food doesn't overlap with the body
+        // Make sure food doesn't overlap with the body
         while (current != NULL) {
             if (current->x == food.x * CELL_SIZE && current->y == food.y * CELL_SIZE) {
                 inside_saap = true;
@@ -126,7 +122,6 @@ void generate_food() {
     } while (inside_saap);
 }
 
-// render food
 void render_food(SDL_Renderer *renderer, int x, int y) {
     SDL_SetRenderDrawColor(renderer, 0xFA, 0x4E, 0x58, 255);
 
@@ -139,7 +134,6 @@ void render_food(SDL_Renderer *renderer, int x, int y) {
     SDL_RenderFillRect(renderer, &foodRect);
 }
 
-// eat food
 void eat_food() {
     if(head->x == food.x * CELL_SIZE && head->y == food.y * CELL_SIZE) {
         generate_food();
@@ -147,7 +141,6 @@ void eat_food() {
     }
 }
 
-// render a grid
 void render_grid(SDL_Renderer * renderer, int x, int y) {
     SDL_SetRenderDrawColor(renderer, 0xCC, 0xCC, 0xCC, 255);
 
@@ -166,13 +159,13 @@ void render_grid(SDL_Renderer * renderer, int x, int y) {
 
 // detect collision
 bool check_collision() {
-    // check if the head hits the walls
+    // Check if the head hits the walls
     if (head->x < 0 || head->x >= COLS * CELL_SIZE ||
         head->y < 0 || head->y >= ROWS * CELL_SIZE) {
         return true;
     }
 
-    // check if the head collides with its own body
+    // Check if the head collides with its own body
     Saap *current = head->next;
     while (current != NULL) {
         if (head->x == current->x && head->y == current->y) {
@@ -188,7 +181,6 @@ bool check_collision() {
 int main() {
     srand(time(0));
 
-    // initialize saap
     init_saap();
 
     // generate food randomly
@@ -230,7 +222,7 @@ int main() {
     render_grid(renderer, grid_x, grid_y);
     render_saap(renderer, grid_x, grid_y);
     render_food(renderer, grid_x, grid_y);
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     SDL_RenderPresent(renderer);
 
 
@@ -240,8 +232,8 @@ int main() {
     while (!quit) {
         while (!game_started) {
             while (SDL_PollEvent(&event)) {
-                // click space to start the game
-                if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_i) {
+                // Press 'i' or 'enter' to start the game
+                if (event.type == SDL_KEYDOWN && (event.key.keysym.sym == SDLK_i || event.key.keysym.sym == SDLK_RETURN)) {
                     game_started = 1;
                 }
             }
