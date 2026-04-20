@@ -48,11 +48,12 @@ sudo apt-get install libsdl2-2.0-0 libsdl2-dev -y
 
 ## Controls
 
-| KEY   | ACTION        |
-| ----- | ------------- |
-| `i`   | start game    |
-| `h`   | move left     |
-| `j`   | move down     |
-| `k`   | move up       |
-| `l`   | move right    |
-| `esc` | quit the game |
+| KEY             | ACTION              |
+| --------------- | --------------------|
+| `i`/`<enter>`   | start game          |
+| `h`             | move left           |
+| `j`             | move down           |
+| `k`             | move up             |
+| `l`             | move right          |
+| `esc`           | quit the game       |
+| `<space>`       | pause/play the game |
