@@ -18,32 +18,33 @@ The name **`saap.vi`** (with 'saap' meaning 'snake') playfully describes the sna
 ```bash
 sudo xbps-install gcc SDL2 SDL2-devel -y
 ```
+#### Ubuntu
+
+```bash
+sudo apt-get install libsdl2-2.0-0 libsdl2-dev -y
+```
 
 ### Getting Started
 
-Clone the repository
+- Clone the repository
+    ```bash
+    git clone git@github.com:bvsvntv/saap.vi.git
+    ```
+- Navigate to the project directory
 
-```bash
-git clone git@github.com:iamsampang/saap.vi.git
-```
+    ```bash
+    cd saap.vi
+    ```
+- Project Structure
+    - `logic.{h,c}` - Contains core game state and mechanics
+    - `rendering.{h,c}` - Handles all SDL-specific drawing logic
+    - `main.c` - Contains the game loop and event handling, delegating logic and rendering to the respective modules
 
-Navitage to the project directory
+- Build and run the game using `make`
 
-```bash
-cd saap.vi
-```
-
-Build the game using `make`
-
-```bash
-make
-```
-
-Run the game
-
-```bash
-./main.bin
-```
+    ```bash
+    make run
+    ```
 
 ## Controls
 
