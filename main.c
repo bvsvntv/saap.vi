@@ -167,8 +167,8 @@ void render_grid(SDL_Renderer * renderer, int x, int y) {
 // detect collision
 bool check_collision() {
     // check if the head hits the walls
-    if (head->x < 0 || head->x > COLS * CELL_SIZE ||
-        head->y < 0 || head->y > ROWS * CELL_SIZE) {
+    if (head->x < 0 || head->x >= COLS * CELL_SIZE ||
+        head->y < 0 || head->y >= ROWS * CELL_SIZE) {
         return true;
     }
 
@@ -283,6 +283,7 @@ int main() {
 
         if (check_collision()) {
             quit = 1;
+            break;
         } else {
             eat_food();
         }
