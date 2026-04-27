@@ -12,5 +12,5 @@ $(MAIN) : ${OBJS}
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 clean:
 	$(RM) *.o *~ $(MAIN)
-run: $(MAIN)
+run: clean $(MAIN)
 	./main.bin
